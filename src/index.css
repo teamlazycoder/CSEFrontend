@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap');
+@import "tailwindcss";
+
+/* Tailwind v4 defaults `dark:` to an OS-level prefers-color-scheme media query.
+   This app toggles a `.dark` class on <html> instead, so the variant must be
+   redefined to be class-based or the in-app theme toggle has no effect. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-display: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Space Grotesk", ui-monospace, monospace;
+
+  --color-primary: #0B1F3A;
+  --color-primary-50: #eef2f8;
+  --color-primary-100: #d7e0ee;
+  --color-primary-400: #294a75;
+  --color-primary-600: #0B1F3A;
+  --color-primary-900: #060f1d;
+
+  --color-secondary: #0056D6;
+  --color-secondary-50: #eaf1ff;
+  --color-secondary-100: #cfe0ff;
+  --color-secondary-500: #0056D6;
+  --color-secondary-600: #0046ad;
+
+  --color-accent: #2DA8FF;
+  --color-success: #16A34A;
+  --color-warning: #F59E0B;
+  --color-danger: #DC2626;
+
+  --color-bg: #F8FAFC;
+  --color-card: #FFFFFF;
+  --color-text: #111827;
+  --color-text-muted: #6B7280;
+
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-slow: pulse-slow 4s ease-in-out infinite;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-14px); }
+}
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 0.7; }
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+.dark body { background-color: #060f1d; color: #E5EAF2; }
+
+::selection { background: var(--color-accent); color: white; }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 8px; }
+.dark ::-webkit-scrollbar-thumb { background: #24344f; }
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+.dark .glass {
+  background: rgba(11, 31, 58, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, #0B1F3A 0%, #0056D6 55%, #2DA8FF 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.grid-pattern {
+  background-image:
+    linear-gradient(rgba(11,31,58,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(11,31,58,0.06) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+.dark .grid-pattern {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+}
